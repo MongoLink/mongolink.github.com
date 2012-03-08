@@ -1,0 +1,38 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.cloudbees {
+	float: right;
+}
+
+.fork-me {
+	z-index:2000;
+	position: fixed;
+	top:0;
+	right:0;
+}
+
+.container header {
+	text-align: center;
+	margin-bottom: 72px;
+    padding-top: 36px;
+    position: relative;
+}
+
+.container header h1 {
+	font-size: 81px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 18px;
+}
+
+.container header p {
+    font-size: 30px;
+    line-height: 36px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight: 300;
+    margin-bottom: 18px;
+}
