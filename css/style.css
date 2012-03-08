@@ -9,7 +9,7 @@ body {
 .fork-me {
 	z-index:2000;
 	position: fixed;
-	top:40px;
+	top:0;
 	right:0;
 }
 
