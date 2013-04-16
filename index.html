@@ -83,28 +83,89 @@
         <p>MongoLink was conceived to leave no footprints at all (or almost) on your project : no annotations, no super class to inherit. Mapping is declared through a fluent api directly in Java, and the configuration to get started is just a few lines long.</p>
       </div>
 
-      <div class="row">
-        <div class="span4">
-          <h2>Install</h2>
-          <p>You can either build the project yourself, using maven and our little ruby script to build each projets ; or use our
-			<a href="http://repository-mongolink.forge.cloudbees.com/release/">maven repository</a>
-			, provided by <a href="http://www.cloudbees.com/">cloudbees</a>.
-		  </p>
-          <p>MongoLink also provides a set of tools to ease unit testing.
-	Mainly it provides a JUnit Rule to setup MongoLink with <a href="https://github.com/foursquare/fongo">fongo</a>, and some helper methods</p>
-        </div>
-        <div class="span4">
-          <h2>License</h2>
-           <p>MongoLink is free software: you can redistribute it and/or modify it under the terms of the Lesser GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version. </p>
-       </div>
-        <div class="span4">
-          <h2>Credits</h2>
-          <p>MongoLink was created by <a href="https://github.com/BodySplash">Jean-Baptiste Dusseaut</a> for <a href="http://arpinum.fr">Arpinum</a></p>
-          <p><a href="https://github.com/daviddumon">David Dumon</a> and <a href="https://github.com/couillardcharles">Charles Couillard</a> contribute greetly. </p>
-          <p>Logos by <a href="https://twitter.com/cedricnehemie">Cédric Néhémie</a>.</p>
-        </div>
-      </div>
 
+<div class="row">
+	<div class="span12">
+		<h2>Quick start</h2>
+		<p>Here is a <a href="https://github.com/MongoLink/mongolink-example">sample project</a>, that should get you up and runnning quickly</p>
+	</div>
+	<div class="span12">
+		<h2 id="install">Install</h2>
+		<p>
+			You must of course <a href="http://docs.mongodb.org/manual/installation/">install</a> MongoDB. Then the simplest way to go is to use Maven, Gradle, or wathever build tool you fancy. Here is a sample configuration for Maven :
+			<script src="https://gist.github.com/BodySplash/5393539.js"></script>
+			Keep in a mind we also provide a snapshot repository for the more bleeding edge versions of MongoLink
+		</p>
+	</div>
+	<div class="span12">
+		<h2 id="configuration">Configuration</h2>
+		<p>
+			To work with MongoLink, you must use MongoSessionManager and MongoSession. MongoSessionManager is more or less a factory for MongoSession, and you may have only one instance of MongoSessionManager for your application.
+			<script src="https://gist.github.com/BodySplash/5393625.js"></script>
+			<script src="https://gist.github.com/BodySplash/5393630.js"></script>
+		</p>
+	</div>
+	<div class="span12">
+		<h2 id="mapping">Mapping</h2>
+		<p>Mapping with MongoLink is only declared through code : 
+			<script src="https://gist.github.com/BodySplash/5393634.js"></script>
+			The «magic» here occures with the element() function. It returns an entity interceptor that let MongoLink register your functions. MongoLink will deduce your field names from functions.</p>
+		<p>You can also declare Value objects that can be use as properties of other objects : 
+			<script src="https://gist.github.com/BodySplash/5393651.js"></script>
+		</p>
+	</div>
+	<div class="span12">
+		<h2 id="saving">Saving</h2>
+		Once you have a MongoSession instance, saving an entity is quite easy : 
+		<script src="https://gist.github.com/BodySplash/5393662.js"></script>
+	</div>
+	<div class="span12">
+		<h2 class="reading">Reading</h2>
+		Retrieving an entity with its Id is also fairly easy : 
+		<script src="https://gist.github.com/BodySplash/5393667.js"></script>
+		For more complexe scenarios, we are working on a criteria api : 
+		<script src="https://gist.github.com/BodySplash/5393683.js"></script>
+	</div>
+	<div class="span12">
+		<h2 id="updating">Updating</h2>
+		Updates are automatics with MongoLink. Since all your work is encapsulated in a MongoSession, it can generate the update query that matchs your modifications. A simple call to mongoSession.stop() will do the trick : 
+		<script src="https://gist.github.com/BodySplash/5393690.js"></script>
+		MongoLink supports two update strategies : 
+		<ul>
+			<li>DIFF : generates only the modifiers needed</li>
+			<li>OVERWRITE : writes the whole document each time</li>
+		</ul>
+	</div>
+	
+	<div class="span12">
+		<h2 id="deleting">Deleting</h2>
+		Once again, when you have a MongoSession, deleting is fairly easy : 
+		<script src="https://gist.github.com/BodySplash/5393709.js"></script>
+	</div>
+	<div class="span12">
+		<h2 id="unittesting">Unit Testing</h2>
+		MongoLink provides a simple junit rule te ease unit testing. It will : 
+		<ul>
+			<li>Setup MongoLink with <a href="https://github.com/foursquare/fongo">Fongo</a></li>
+			<li>Provide utility methods, as cleaning session </li>
+		</ul>
+		
+		<script src="https://gist.github.com/BodySplash/5393728.js"></script>
+	</div>
+</div>
+ <div class="row">
+    
+    <div class="span6">
+      <h2>License</h2>
+       <p>MongoLink is free software: you can redistribute it and/or modify it under the terms of the Lesser GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version. </p>
+   </div>
+    <div class="span6">
+      <h2>Credits</h2>
+      <p>MongoLink was created by <a href="https://github.com/BodySplash">Jean-Baptiste Dusseaut</a> for <a href="http://arpinum.fr">Arpinum</a></p>
+      <p><a href="https://github.com/daviddumon">David Dumon</a> and <a href="https://github.com/couillardcharles">Charles Couillard</a> contribute greetly. </p>
+      <p>Logos by <a href="https://twitter.com/cedricnehemie">Cédric Néhémie</a>.</p>
+    </div>
+  </div>
       <hr>
 
       <footer>		
