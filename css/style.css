@@ -2,10 +2,6 @@ body {
     padding-bottom: 40px;
 }
 
-.cloudbees {
-	float: right;
-}
-
 .fork-me {
 	z-index:2000;
 	position: fixed;
